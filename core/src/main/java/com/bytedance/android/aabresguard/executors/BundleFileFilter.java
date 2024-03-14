@@ -153,7 +153,7 @@ public class BundleFileFilter {
     private BundleMetadata filterMetaData() {
         BundleMetadata.Builder builder = BundleMetadata.builder();
         Stream.of(rawAppBundle.getBundleMetadata())
-                .map(BundleMetadata::getFileDataMap)
+                .map(BundleMetadata::getFileContentMap)
                 .map(ImmutableMap::entrySet)
                 .flatMap(Collection::stream)
                 .filter(entry -> {

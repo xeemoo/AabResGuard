@@ -133,7 +133,7 @@ public class FileOperation {
     public static long getZipPathFileSize(ZipFile zipFile, ZipEntry zipEntry) {
         long size = 0;
         try {
-            InputStream is = BufferedIo.inputStream(zipFile, zipEntry);
+            InputStream is = zipFile.getInputStream(zipEntry);
             size = is.available();
             is.close();
         } catch (IOException e) {

@@ -5,14 +5,14 @@ buildscript {
         }
     }
     dependencies {
-        classpath "com.google.protobuf:protobuf-gradle-plugin:0.8.13"
+        classpath "com.google.protobuf:protobuf-gradle-plugin:0.9.4"
     }
 }
 
 apply plugin: 'java-library'
 apply plugin: "com.google.protobuf"
 apply plugin: "com.github.johnrengelman.shadow"
-apply from: rootProject.file('gradle/publish-shadow.gradle')
+apply from: rootProject.file('gradle/publish.gradle')
 
 [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
 
@@ -31,9 +31,9 @@ dependencies {
     compileOnly gradleApi()
  //   compile deps.gradle.agp
 
-    implementation "com.android.support:support-annotations:24.2.0"
-    shadow 'commons-io:commons-io:2.7'
-    shadow 'commons-codec:commons-codec:1.5'
+    implementation "com.android.support:support-annotations:28.0.0"
+    shadow 'commons-io:commons-io:2.13.0'
+    shadow 'commons-codec:commons-codec:1.15'
     shadow "com.google.guava:guava:30.0-jre"
 
     annotationProcessor "com.google.auto.value:auto-value:1.5.2"
@@ -80,4 +80,6 @@ shadowJar {
 
     relocate 'com.android', 'shadow.bytedance.com.android'
     relocate 'com.google', 'shadow.bytedance.com.google'
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }

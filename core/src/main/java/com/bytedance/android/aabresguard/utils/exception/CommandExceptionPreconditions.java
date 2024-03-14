@@ -16,7 +16,7 @@ public final class CommandExceptionPreconditions {
             object = ((Optional) object).get();
         }
         Optional.of(object).orElseThrow(() -> CommandExecutionException.builder()
-                .withMessage("Wrong properties: %s can not be empty", flag)
+                .withInternalMessage("Wrong properties: %s can not be empty", flag)
                 .build());
     }
 
