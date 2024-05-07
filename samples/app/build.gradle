@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply from: "$rootDir/gradle/aabresguard.gradle"
+apply plugin: 'org.jetbrains.kotlin.android'
 
 android {
     compileSdkVersion versions.compileSdkVersion
@@ -11,16 +12,31 @@ android {
         versionName "1.0"
     }
 
+    signingConfigs {
+        debug {
+            storeFile file('../debug.jks')
+            storePassword 'debug1234'
+            keyAlias 'debug'
+            keyPassword 'debug1234'
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
             minifyEnabled false
             shrinkResources false
+            signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 
     bundle {
@@ -35,6 +51,9 @@ android {
         }
     }
     dynamicFeatures = [":df_module1", ":df_module2"]
+    kotlinOptions {
+        jvmTarget = '11'
+    }
 }
 
 dependencies {
