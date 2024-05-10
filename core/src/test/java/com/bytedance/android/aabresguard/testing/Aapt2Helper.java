@@ -15,11 +15,15 @@
  */
 package com.bytedance.android.aabresguard.testing;
 
-import com.android.tools.build.bundletool.model.Aapt2Command;
+import com.android.tools.build.bundletool.androidtools.Aapt2Command;
+import com.android.tools.build.bundletool.androidtools.CommandExecutor;
+import com.android.tools.build.bundletool.androidtools.DefaultCommandExecutor;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ObjectArrays;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 /** Helper for tests using aapt2. */
 public final class Aapt2Helper {
@@ -37,7 +41,10 @@ public final class Aapt2Helper {
   }
 
   private static void runAapt2(String... command) {
-    new Aapt2Command.CommandExecutor().execute(ObjectArrays.concat(AAPT2_PATH, command));
+    new DefaultCommandExecutor().execute(
+            ImmutableList.copyOf(ObjectArrays.concat(AAPT2_PATH, command)),
+            CommandExecutor.CommandOptions.builder().build()
+    );
   }
 
   private Aapt2Helper() {}

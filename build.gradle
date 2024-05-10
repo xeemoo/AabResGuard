@@ -16,9 +16,9 @@ buildscript {
         maven {
             url "https://plugins.gradle.org/m2/"
         }
+        gradlePluginPortal()
     }
     dependencies {
-        classpath deps.plugin.digital
         classpath deps.plugin.shadow
         classpath deps.plugin['bintray-plugin']
         classpath deps.gradle.agp

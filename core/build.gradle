@@ -12,7 +12,7 @@ buildscript {
 apply plugin: 'java-library'
 apply plugin: "com.google.protobuf"
 apply plugin: "com.github.johnrengelman.shadow"
-apply from: rootProject.file('gradle/publish.gradle')
+apply from: rootProject.file('gradle/publish-shadow.gradle')
 
 [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
 
@@ -42,6 +42,7 @@ dependencies {
     shadow deps.bundletool
 
     testImplementation deps.gradle.agp
+    testImplementation deps.bundletool
     testImplementation "com.android.tools.build:aapt2-proto:0.4.0"
     testImplementation group: 'org.dom4j', name: 'dom4j', version: '2.1.1'
     testImplementation "junit:junit:4.12"
@@ -60,10 +61,11 @@ protobuf {
     }
 }
 
+/** FIXME minimize会移除jar中全部的类
 shadowJar {
-    baseName = "AabResGuard"
+    archiveBaseName = "AabResGuard"
     version = versions[ARTIFACT_ID]
-    classifier = ''
+    archiveClassifier = ''
 
     minimize()
 
@@ -82,4 +84,10 @@ shadowJar {
     relocate 'com.google', 'shadow.bytedance.com.google'
 
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+*/
+
+java {
+    sourceCompatibility = versions.java
+    targetCompatibility = versions.java
 }

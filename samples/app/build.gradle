@@ -3,6 +3,7 @@ apply from: "$rootDir/gradle/aabresguard.gradle"
 apply plugin: 'org.jetbrains.kotlin.android'
 
 android {
+    namespace "com.bytedance.android.app"
     compileSdkVersion versions.compileSdkVersion
 
     defaultConfig {
@@ -52,7 +53,7 @@ android {
     }
     dynamicFeatures = [":df_module1", ":df_module2"]
     kotlinOptions {
-        jvmTarget = '11'
+        jvmTarget = '1.8'
     }
 }
 
@@ -63,5 +64,5 @@ dependencies {
     implementation 'com.mikepenz:ionicons-typeface:2.0.1.5-kotlin@aar'
     implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.3-kotlin@aar'
     implementation 'com.mikepenz:material-design-icons-dx-typeface:5.0.1.0-kotlin@aar'
-    compileOnly deps.plugin['bintray-plugin']
+//    compileOnly deps.plugin['bintray-plugin']
 }
