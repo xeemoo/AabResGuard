@@ -12,6 +12,9 @@
 
 > 本工具由字节跳动抖音 Android 团队提供。
 
+> 来自字节跳动团队的工具已经很久没有更新，xeemoo从2024年开始基于[martinloren](https://github.com/martinloren/AabResGuard/)的工作继续维护。
+> 现在支持`AGP 7.0`及以上，在 `BundleTool 1.15.2`上验证可用。
+
 ## 特性
 > 针对 aab 文件的资源混淆工具
 
@@ -37,9 +40,10 @@ buildscript {
   repositories {
     mavenCentral()
     google()
+    maven { url 'https://raw.githubusercontent.com/xeemoo/AabResGuard/mvn-repo' }
    }
   dependencies {
-    classpath "com.bytedance.android:aabresguard-plugin:0.1.0"
+    classpath "com.bytedance.android:aabresguard-plugin:0.1.12"
   }
 }
 ```

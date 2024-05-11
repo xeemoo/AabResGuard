@@ -1,6 +1,12 @@
 **[English](CHANGELOG.md)** | [简体中文](../zh-cn/CHANGELOG.md)
 
 # Change log
+## 0.1.12
+- Support `AGP-8.0`
+
+## 0.1.11
+- Support `AGP-7.0`
+
 ## 0.1.6（2020/4/21）
 - Compatible wit `AGP-3.5.0`
 - Bugfix: `Fix get AGP version failed issue`

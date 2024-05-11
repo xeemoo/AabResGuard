@@ -93,7 +93,7 @@ open class AabResGuardTask @Inject constructor(outputFactory: StyledTextOutputFa
 
     private fun prepareUnusedFile() {
         val simpleName = variant.name.replace("Release", "")
-        val name = simpleName[0].toLowerCase() + simpleName.substring(1)
+        val name = simpleName[0].lowercaseChar() + simpleName.substring(1)
         val resourcePath = "${project.buildDir}/outputs/mapping/$name/release/unused.txt"
         val usedFile = File(resourcePath)
         if (usedFile.exists()) {

@@ -34,8 +34,7 @@ class AabResGuardPlugin : Plugin<Project> {
             return
         }
         val aabResGuardTaskName = "aabresguard$variantName"
-        val aabResGuardTask: AabResGuardTask
-        aabResGuardTask = if (project.tasks.findByName(aabResGuardTaskName) == null) {
+        val aabResGuardTask: AabResGuardTask = if (project.tasks.findByName(aabResGuardTaskName) == null) {
             project.tasks.create(aabResGuardTaskName, AabResGuardTask::class.java)
         } else {
             project.tasks.getByName(aabResGuardTaskName) as AabResGuardTask

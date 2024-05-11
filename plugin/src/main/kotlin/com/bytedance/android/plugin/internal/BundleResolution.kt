@@ -9,7 +9,7 @@ import java.nio.file.Path
  * Created by YangJing on 2020/01/07 .
  * Email: yangjing.yeoh@bytedance.com
  */
-internal fun getBundleFilePath(project: Project, variant:ApplicationVariant): Path {
+internal fun getBundleFilePath(project: Project, variant: ApplicationVariant): Path {
     val agpVersion = getAGPVersion(project)
     val flavor = variant.name
     return when {
@@ -32,14 +32,19 @@ internal fun getBundleFilePath(project: Project, variant:ApplicationVariant): Pa
 }
 
 fun getBundleFileForAGP32To33(project: Project, flavor: String): File {
-    val bundleTaskName = "package${flavor.capitalize()}Bundle"
+    val bundleTaskName =
+        "package${flavor.replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }}Bundle"
     val bundleTask = project.tasks.getByName(bundleTaskName)
-    return File(bundleTask.property("bundleLocation") as File, bundleTask.property("fileName") as String)
+    return File(
+        bundleTask.property("bundleLocation") as File,
+        bundleTask.property("fileName") as String
+    )
 }
 
 fun getBundleFileForAGP34To35(project: Project, flavor: String): File {
     // use FinalizeBundleTask to sign bundle file
-    val finalizeBundleTask = project.tasks.getByName("sign${flavor.capitalize()}Bundle")
+    val finalizeBundleTask =
+        project.tasks.getByName("sign${flavor.replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }}Bundle")
     // FinalizeBundleTask.finalBundleFile is the final bundle path
     val location = finalizeBundleTask.property("finalBundleLocation") as File
     return File(location, finalizeBundleTask.property("finalBundleFileName") as String)
@@ -47,7 +52,8 @@ fun getBundleFileForAGP34To35(project: Project, flavor: String): File {
 
 fun getBundleFileForAGP40After(project: Project, flavor: String): File {
     // use FinalizeBundleTask to sign bundle file
-    val finalizeBundleTask = project.tasks.getByName("sign${flavor.capitalize()}Bundle")
+    val finalizeBundleTask =
+        project.tasks.getByName("sign${flavor.replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }}Bundle")
     // FinalizeBundleTask.finalBundleFile is the final bundle path
     val bundleFile = finalizeBundleTask.property("finalBundleFile")
     val regularFile = bundleFile!!::class.java.getMethod("get").invoke(bundleFile)

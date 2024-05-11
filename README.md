@@ -1,16 +1,18 @@
-# AabResGuard - Artic Fox Edition
+# AabResGuard
 <h1 align="center">
   <img src="wiki/images/logo.png" height="220" width="460"/>
   <p align="center" style="font-size: 0.3em">The tool of obfuscated aab resources</p>
 </h1>
 
-[Download V.0.1.10](https://github.com/martinloren/mvn-repo/raw/main/AabResGuard_0.1.10.zip)
-
-[![License](https://img.shields.io/badge/license-Apache2.0-brightgreen)](LICENSE) [![Bundletool](https://img.shields.io/badge/Dependency-Bundletool/0.10.0-blue)](https://github.com/google/bundletool)
+[![License](https://img.shields.io/badge/license-Apache2.0-brightgreen)](LICENSE) 
+[![BundleTool](https://img.shields.io/badge/Dependency-Bundletool/1.15.2-blue)](https://github.com/google/bundletool)
 
 **[English](README.md)** | [简体中文](wiki/zh-cn/README.md)
 
 > Powered by bytedance douyin android team.
+
+> The tools from the bytedance team have not been updated for a long time. xeemoo has been based on [martinloren](https://github.com/martinloren/AabResGuard) since 2024 continue to maintain the work.
+> Now supports AGP 7.0 and above, and can be verified and used on BundleTool 1.15.2.
 
 ## Features
 > The tool of obfuscated aab resources.
@@ -39,10 +41,10 @@ buildscript {
     mavenCentral()
     mavenLocal()
     google()
-    maven { url 'https://raw.githubusercontent.com/martinloren/AabResGuard/mvn-repo' }
-   }
+    maven { url 'https://raw.githubusercontent.com/xeemoo/AabResGuard/mvn-repo' }
+  }
   dependencies {
-    classpath "com.bytedance.android:aabresguard-plugin:0.1.10"
+    classpath "com.bytedance.android:aabresguard-plugin:0.1.12"
   }
 }
 ```
